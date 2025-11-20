@@ -3,24 +3,44 @@ CS_11(FACI Nihad )
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/rGfOobSC)
 
 
- EXERCICE 1 : PATTERN BUILDER
-Problème Identifié
-La classe Cours possédait un constructeur monolithique avec de nombreux paramètres, rendant l'instanciation complexe, error-prone et difficile à lire. La validation des données était absente et la création d'objets partiels impossible.
+ANALYSE DES PRINCIPES SOLID
+1. SRP (Single Responsibility Principle) - RESPECTÉ 
+Cours : Représente un cours (données)
 
-Solution Apportée
-Implémentation du pattern Builder permettant une construction fluide et progressive des objets Cours. Cette approche offre une interface claire et intuitive pour créer des instances complexes étape par étape.
+CoursBuilder : Construit des cours (construction)
 
- EXERCICE 2 : PATTERN OBSERVER
-Problème Identifié
-Absence de mécanisme automatique de notification lors des modifications de l'emploi du temps. Les étudiants et responsables devaient être informés manuellement des changements, créant un couplage fort et des oublis potentiels.
+CoursDecorator : Étend les fonctionnalités (extension)
 
-Solution Apportée
-Mise en place d'un système de publication/abonnement où le gestionnaire d'emploi du temps notifie automatiquement tous les observateurs inscrits lors de tout changement.
+GestionnaireEmploiDuTemps : Gère les cours et notifications (gestion)
+
+Etudiant/Responsable : Réagissent aux notifications (réaction)
 
 
-EXERCICE 3 : PATTERN DECORATOR
-Problème Identifié
-Besoin d'ajouter dynamiquement des caractéristiques spécifiques aux cours (en ligne, en anglais, magistral) sans alourdir la classe de base ni créer une hiérarchie de classes rigide.
+2. OCP (Open/Closed Principle) - RESPECTÉ 
+Decorator Pattern : On peut ajouter de nouveaux décorateurs sans modifier le code existant
 
-Solution Apportée
-Création d'un système de décorateurs permettant d'envelopper les objets Cours existants et d'étendre leurs fonctionnalités de manière transparente et composable.
+Observer Pattern : On peut ajouter de nouveaux observateurs sans modifier le sujet
+
+3. LSP (Liskov Substitution Principle) - RESPECTÉ 
+Tous les décorateurs peuvent remplacer ICours
+
+Tous les observateurs peuvent remplacer Observer
+
+Tous les sujets peuvent remplacer Subject
+
+4. ISP (Interface Segregation Principle) - RESPECTÉ 
+ICours : Interface minimale pour un cours
+
+Subject/Observer : Interfaces séparées et ciblées
+
+Pas d'interfaces "grosses" avec des méthodes inutiles
+
+5. DIP (Dependency Inversion Principle) - RESPECTÉ 
+Dépendances sur des abstractions (ICours, Subject, Observer)
+
+Pas de dépendances directes entre classes concrètes
+
+Injection des dépendances via constructeurs
+
+
+
